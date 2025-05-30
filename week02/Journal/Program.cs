@@ -4,9 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.WriteLine("Hello World! This is the Journal Project.");
         Journal myJournal = new Journal();
         PromptGenerator promptGenerator = new PromptGenerator();
-        
+
         Console.WriteLine("Welcome to the Journal Program!");
         Console.Write("Enter your journal name: ");
         myJournal._name = Console.ReadLine();
@@ -41,15 +42,30 @@ class Program
                 case "3":
                     Console.Write("Enter filename to save: ");
                     string saveFile = Console.ReadLine();
-                    myJournal.SaveToFile(saveFile);
+                    if (!string.IsNullOrWhiteSpace(saveFile))
+                    {
+                        myJournal.SaveToFile(saveFile);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid filename.");
+                    }
                     break;
                 case "4":
                     Console.Write("Enter filename to load: ");
                     string loadFile = Console.ReadLine();
-                    myJournal.LoadFromFile(loadFile);
+                    if (!string.IsNullOrWhiteSpace(loadFile))
+                    {
+                        myJournal.LoadFromFile(loadFile);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid filename.");
+                    }
                     break;
                 case "5":
                     running = false;
+                    Console.WriteLine("Thank you for using the Journal Program. Goodbye!");
                     break;
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
